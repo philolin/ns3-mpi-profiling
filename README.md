@@ -1,3 +1,3 @@
 # ns3-optimization
 
-Philo Lin
+Philo Lin and Sizhan Xu
