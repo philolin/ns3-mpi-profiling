@@ -73,8 +73,8 @@ main(int argc, char* argv[])
     pointToPoint.SetChannelAttribute("Delay", StringValue("2ms"));
     // pointToPoint.SetQueue("ns3::DropTailQueue", "MaxPackets", UintegerValue (BUFFER_SIZE));
 
-    std::map<std::pair<int, int>, uint32_t> edgeToAggregationPath;
-    std::map<std::pair<int, int>, uint32_t> aggregationToCorePath;
+    // std::map<std::pair<int, int>, uint32_t> edgeToAggregationPath;
+    // std::map<std::pair<int, int>, uint32_t> aggregationToCorePath;
 
     Ipv4AddressHelper ipv4;
     ipv4.SetBase ("10.0.0.0", "255.255.255.0");
