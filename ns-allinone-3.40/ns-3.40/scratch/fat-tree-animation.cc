@@ -28,7 +28,7 @@
 #include "ns3/point-to-point-layout-module.h"
 #include "ns3/netanim-module.h"
 #include "ns3/applications-module.h"
-// #include "ns3/ipv4-nix-vector-helper.h"
+#include "ns3/nix-vector-helper.h"
 #include "ns3/ipv4-static-routing.h"
 #include "ns3/constant-position-mobility-model.h"
 
@@ -646,6 +646,9 @@ int main (int argc, char *argv[])
   Config::SetDefault ("ns3::OnOffApplication::PacketSize", UintegerValue (512));
   Config::SetDefault ("ns3::OnOffApplication::DataRate", StringValue ("500kb/s"));
 
+  LogComponentEnable("UdpEchoClientApplication", LOG_LEVEL_INFO);
+  LogComponentEnable("UdpEchoServerApplication", LOG_LEVEL_INFO);
+
   uint32_t    nPods = 4;
   std::string animFile = "fat-tree-animation.xml";   // Name of file for animation output
 
@@ -655,12 +658,12 @@ int main (int argc, char *argv[])
   cmd.Parse (argc,argv);
 
   InternetStackHelper internet;
-//   Ipv4NixVectorHelper nixRouting;
+  Ipv4NixVectorHelper nixRouting;
   Ipv4StaticRoutingHelper staticRouting;
 
   Ipv4ListRoutingHelper list;
   list.Add (staticRouting, 0);
-//   list.Add (nixRouting, 10);
+  list.Add (nixRouting, 10);
   internet.SetRoutingHelper (list);
 
   // Create the point-to-point link helpers
@@ -674,25 +677,28 @@ int main (int argc, char *argv[])
 
   d.AssignIpv4Addresses (Ipv4Address ("10.0.0.0"),Ipv4Mask ("/16"));
 
-  OnOffHelper clientHelper ("ns3::UdpSocketFactory", Address ());
-  clientHelper.SetAttribute ("OnTime", StringValue ("ns3::ConstantRandomVariable[Constant=1]"));
-  clientHelper.SetAttribute ("OffTime", StringValue ("ns3::ConstantRandomVariable[Constant=0]"));
 
-  ApplicationContainer clientApps;
-  AddressValue remoteAddress (InetSocketAddress (d.GetServerIpv4Address (2), 5001));
-  clientHelper.SetAttribute ("Remote", remoteAddress);
-  clientApps.Add (clientHelper.Install (d.GetServerNode (0)));
+  auto serverNode0 = d.GetServerNode(0);
+  auto serverNode1 = d.GetServerNode(1);
+  auto serverAddr0 = d.GetServerIpv4Address(0);
+  auto serverAddr1 = d.GetServerIpv4Address(1);
 
-  uint16_t port = 50001;
-  Address sinkLocalAddress (InetSocketAddress (Ipv4Address::GetAny (), port));
-  PacketSinkHelper sinkHelper ("ns3::UdpSocketFactory", sinkLocalAddress);
-  ApplicationContainer sinkApp = sinkHelper.Install (d.GetServerNode (2));
+  std::cout << "sending from: " << serverAddr0 << " to " << serverAddr1 << std::endl;
 
-  clientApps.Start (Seconds (1.0));
-  clientApps.Stop (Seconds (10.0));
+  UdpEchoServerHelper echoServer(9);
 
-  sinkApp.Start (Seconds (0.0));
-  sinkApp.Stop (Seconds (10.0));
+  ApplicationContainer serverApps = echoServer.Install(serverNode1);
+  serverApps.Start(Seconds(1.0));
+  serverApps.Stop(Seconds(10.0));
+
+  UdpEchoClientHelper echoClient(serverAddr1, 9);
+  echoClient.SetAttribute("MaxPackets", UintegerValue(1));
+  echoClient.SetAttribute("Interval", TimeValue(Seconds(1.0)));
+  echoClient.SetAttribute("PacketSize", UintegerValue(1024));
+
+  ApplicationContainer clientApps = echoClient.Install(serverNode0);
+  clientApps.Start(Seconds(2.0));
+  clientApps.Stop(Seconds(10.0));
 
   // Set the bounding box for animation
   d.BoundingBox (-1000, -1000, 1000, 1000);
@@ -703,7 +709,7 @@ int main (int argc, char *argv[])
   anim.EnableIpv4L3ProtocolCounters (Seconds (0), Seconds (10)); // Optional
 
   // Set up the actual simulation
-  Ipv4GlobalRoutingHelper::PopulateRoutingTables ();
+  // Ipv4GlobalRoutingHelper::PopulateRoutingTables ();
 
   Simulator::Run ();
   std::cout << "Animation Trace file created:" << animFile.c_str () << std::endl;
