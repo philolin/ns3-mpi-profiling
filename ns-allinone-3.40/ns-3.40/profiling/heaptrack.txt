@@ -1,0 +1,1 @@
+Failed to open heaptrack log file: /users/philolin/ns3-optimization/ns-allinone-3.40/ns-3.40/heaptrack.ns3.40-fat-tree-animation-debug.*.zst

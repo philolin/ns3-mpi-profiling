@@ -1,0 +1,27 @@
+At time +2s client sent 1024 bytes to 10.8.0.1 port 9
+At time +2.01106s server received 1024 bytes from 10.1.0.1 port 49153
+At time +2.01106s server sent 1024 bytes to 10.1.0.1 port 49153
+At time +2.02212s client received 1024 bytes from 10.8.0.1 port 9
+% time     seconds  usecs/call     calls    errors syscall
+------ ----------- ----------- --------- --------- ----------------
+ 76.67    0.000023           0        64           mprotect
+ 23.33    0.000007           0       207           mmap
+  0.00    0.000000           0        41           read
+  0.00    0.000000           0        86           write
+  0.00    0.000000           0        43           close
+  0.00    0.000000           0         2           munmap
+  0.00    0.000000           0        26           brk
+  0.00    0.000000           0         4           pread64
+  0.00    0.000000           0         1         1 access
+  0.00    0.000000           0         1           execve
+  0.00    0.000000           0         2         1 arch_prctl
+  0.00    0.000000           0         1           futex
+  0.00    0.000000           0         1           set_tid_address
+  0.00    0.000000           0        60        17 openat
+  0.00    0.000000           0        53         9 newfstatat
+  0.00    0.000000           0         1           set_robust_list
+  0.00    0.000000           0         1           prlimit64
+  0.00    0.000000           0         1           getrandom
+  0.00    0.000000           0         1           rseq
+------ ----------- ----------- --------- --------- ----------------
+100.00    0.000030           0       596        28 total

@@ -7,6 +7,12 @@ sudo apt install -y ccache
 # netanim
 sudo apt install -y qtbase5-dev qtchooser qt5-qmake qtbase5-dev-tools
 
+# profiling
+sudo apt install -y valgrind
+sudo apt install -y heaptrack
+# perf
+sudo apt install -y linux-tools-common linux-tools-generic linux-tools-`uname -r`
+
 # dependency for pyviz (does not work)
 # python3 -m pip install --user cppyy
 # sudo apt install -y gir1.2-goocanvas-2.0 python3-gi python3-gi-cairo python3-pygraphviz gir1.2-gtk-3.0 ipython3  

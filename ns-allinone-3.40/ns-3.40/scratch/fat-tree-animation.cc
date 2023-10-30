@@ -679,9 +679,9 @@ int main (int argc, char *argv[])
 
 
   auto serverNode0 = d.GetServerNode(0);
-  auto serverNode1 = d.GetServerNode(1);
+  auto serverNode1 = d.GetServerNode(7);
   auto serverAddr0 = d.GetServerIpv4Address(0);
-  auto serverAddr1 = d.GetServerIpv4Address(1);
+  auto serverAddr1 = d.GetServerIpv4Address(7);
 
   std::cout << "sending from: " << serverAddr0 << " to " << serverAddr1 << std::endl;
 
