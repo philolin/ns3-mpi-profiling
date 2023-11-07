@@ -241,6 +241,9 @@ public:
    */
   void BoundingBox (double ulx, double uly, double lrx, double lry);
 
+  NodeContainer GetMServers () const;
+  uint32_t GetNumServers () const;
+
 private:
   uint32_t m_numPods;                                          //!< Number of pods
   std::vector<NetDeviceContainer> m_edgeSwitchDevices;         //!< Net Device container for edge switches and servers
@@ -258,6 +261,7 @@ private:
   NodeContainer m_aggregateSwitches;                           //!< all the aggregate switches in the Fat tree
   NodeContainer m_coreSwitches;                                //!< all the core switches in the Fat tree
   NodeContainer m_servers;                                     //!< all the servers in the Fat tree
+  uint32_t numServers;
 };
 
 PointToPointFatTreeHelper::PointToPointFatTreeHelper (uint32_t numPods,
@@ -278,7 +282,7 @@ PointToPointFatTreeHelper::PointToPointFatTreeHelper (uint32_t numPods,
   uint32_t numAggregateSwitches = numPods / 2;            // number of aggregate switches in a pod
   uint32_t numGroups = numPods / 2;                       // number of group of core switches
   uint32_t numCoreSwitches = numPods / 2;                 // number of core switches in a group
-  uint32_t numServers = numPods * numPods * numPods / 4;  // number of servers in the entire network
+  numServers = numPods * numPods * numPods / 4;  // number of servers in the entire network
   m_edgeSwitchDevices.resize (numPods * numEdgeSwitches);
   m_aggregateSwitchDevices.resize (numPods * numAggregateSwitches);
   m_coreSwitchDevices.resize (numGroups * numCoreSwitches);
@@ -641,6 +645,19 @@ PointToPointFatTreeHelper::GetCoreSwitchNode (uint32_t i) const
   return m_coreSwitches.Get (i);
 }
 
+NodeContainer
+PointToPointFatTreeHelper::GetMServers () const
+{
+  return m_servers;
+}
+
+uint32_t 
+PointToPointFatTreeHelper::GetNumServers () const
+{
+  return numServers;
+}
+
+
 int main (int argc, char *argv[])
 {
   Config::SetDefault ("ns3::OnOffApplication::PacketSize", UintegerValue (512));
@@ -677,28 +694,32 @@ int main (int argc, char *argv[])
 
   d.AssignIpv4Addresses (Ipv4Address ("10.0.0.0"),Ipv4Mask ("/16"));
 
-
-  auto serverNode0 = d.GetServerNode(0);
-  auto serverNode1 = d.GetServerNode(1);
-  auto serverAddr0 = d.GetServerIpv4Address(0);
-  auto serverAddr1 = d.GetServerIpv4Address(1);
-
-  std::cout << "sending from: " << serverAddr0 << " to " << serverAddr1 << std::endl;
-
+  // Each server sends a packet to all other servers
   UdpEchoServerHelper echoServer(9);
-
-  ApplicationContainer serverApps = echoServer.Install(serverNode1);
+  NodeContainer servers = d.GetMServers();
+  ApplicationContainer serverApps = echoServer.Install(servers);
   serverApps.Start(Seconds(1.0));
   serverApps.Stop(Seconds(10.0));
 
-  UdpEchoClientHelper echoClient(serverAddr1, 9);
-  echoClient.SetAttribute("MaxPackets", UintegerValue(1));
-  echoClient.SetAttribute("Interval", TimeValue(Seconds(1.0)));
-  echoClient.SetAttribute("PacketSize", UintegerValue(1024));
+  uint32_t numServers = d.GetNumServers();
+  std::cout << "numServers: " << numServers << std::endl;
+  uint32_t packetNumber = 0;
+  for (uint32_t sender = 0; sender < numServers; sender++) {
+    for (uint32_t receiver = 0; receiver < numServers; receiver++) {
+      if (sender != receiver) {
+        UdpEchoClientHelper echoClient(d.GetServerIpv4Address(receiver), 9); // Use the appropriate local IP address
+        std::cout << "packet " << packetNumber << " sending from: " << d.GetServerIpv4Address(sender) << " to " << d.GetServerIpv4Address(receiver) << std::endl;
+        echoClient.SetAttribute("MaxPackets", UintegerValue(1));
+        echoClient.SetAttribute("Interval", TimeValue(Seconds(1.0)));
+        echoClient.SetAttribute("PacketSize", UintegerValue(1024));
 
-  ApplicationContainer clientApps = echoClient.Install(serverNode0);
-  clientApps.Start(Seconds(2.0));
-  clientApps.Stop(Seconds(10.0));
+        ApplicationContainer clientApps = echoClient.Install(servers.Get(sender));
+        clientApps.Start(Seconds(2.0));
+        clientApps.Stop(Seconds(10.0));
+        packetNumber += 1;
+      }
+    }
+  }
 
   // Set the bounding box for animation
   d.BoundingBox (-1000, -1000, 1000, 1000);
