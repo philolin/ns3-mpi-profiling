@@ -703,12 +703,12 @@ int main (int argc, char *argv[])
 
   uint32_t numServers = d.GetNumServers();
   std::cout << "numServers: " << numServers << std::endl;
-  uint32_t packetNumber = 0;
+  // uint32_t packetNumber = 0;
   for (uint32_t sender = 0; sender < numServers; sender++) {
     for (uint32_t receiver = 0; receiver < numServers; receiver++) {
       if (sender != receiver) {
         UdpEchoClientHelper echoClient(d.GetServerIpv4Address(receiver), 9); // Use the appropriate local IP address
-        std::cout << "packet " << packetNumber << " sending from: " << d.GetServerIpv4Address(sender) << " to " << d.GetServerIpv4Address(receiver) << std::endl;
+        // std::cout << "packet " << packetNumber << " sending from: " << d.GetServerIpv4Address(sender) << " to " << d.GetServerIpv4Address(receiver) << std::endl;
         echoClient.SetAttribute("MaxPackets", UintegerValue(1));
         echoClient.SetAttribute("Interval", TimeValue(Seconds(1.0)));
         echoClient.SetAttribute("PacketSize", UintegerValue(1024));
@@ -716,7 +716,7 @@ int main (int argc, char *argv[])
         ApplicationContainer clientApps = echoClient.Install(servers.Get(sender));
         clientApps.Start(Seconds(2.0));
         clientApps.Stop(Seconds(10.0));
-        packetNumber += 1;
+        // packetNumber += 1;
       }
     }
   }
@@ -726,8 +726,8 @@ int main (int argc, char *argv[])
 
   // Create the animation object and configure for specified output
   AnimationInterface anim (animFile);
-  anim.EnablePacketMetadata (); // Optional
-  anim.EnableIpv4L3ProtocolCounters (Seconds (0), Seconds (10)); // Optional
+  // anim.EnablePacketMetadata (); // Optional
+  // anim.EnableIpv4L3ProtocolCounters (Seconds (0), Seconds (10)); // Optional
 
   // Set up the actual simulation
   // Ipv4GlobalRoutingHelper::PopulateRoutingTables ();
