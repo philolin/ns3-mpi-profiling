@@ -71,7 +71,7 @@ main(int argc, char* argv[])
     bool nullmsg = false;
     bool tracing = false;
     bool testing = false;
-    bool verbose = false;
+    bool verbose = true;
 
     // Parse command line
     CommandLine cmd(__FILE__);
