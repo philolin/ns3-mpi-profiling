@@ -17,23 +17,24 @@
  *
  * Authors: Shravya K.S. <shravya.ks0@gmail.com>
  *
- */ 
- 
+ */
 
 #include "ns3/applications-module.h"
 #include "ns3/constant-position-mobility-model.h"
 #include "ns3/core-module.h"
 #include "ns3/internet-module.h"
 #include "ns3/ipv4-static-routing.h"
+#include "ns3/mpi-interface.h"
 #include "ns3/netanim-module.h"
 #include "ns3/network-module.h"
 #include "ns3/nix-vector-helper.h"
 #include "ns3/point-to-point-layout-module.h"
 #include "ns3/point-to-point-module.h"
-#include "ns3/mpi-interface.h"
 
+#include <cstdint>
 #include <iostream>
 #include <mpi.h>
+#include <sys/types.h>
 
 using namespace ns3;
 
@@ -692,6 +693,9 @@ main(int argc, char* argv[])
 
     MpiInterface::Enable(&argc, &argv);
 
+    uint32_t systemId = MpiInterface::GetSystemId();
+    uint32_t systemCount = MpiInterface::GetSize();
+
     InternetStackHelper internet;
     Ipv4NixVectorHelper nixRouting;
     Ipv4StaticRoutingHelper staticRouting;
@@ -712,18 +716,37 @@ main(int argc, char* argv[])
 
     d.AssignIpv4Addresses(Ipv4Address("10.0.0.0"), Ipv4Mask("/16"));
 
-    // Each server sends a packet to all other servers
-    UdpEchoServerHelper echoServer(9);
-    NodeContainer servers = d.GetMServers();
-    ApplicationContainer serverApps = echoServer.Install(servers);
-    serverApps.Start(Seconds(1.0));
-    serverApps.Stop(Seconds(10.0));
-
     uint32_t numServers = d.GetNumServers();
+    NodeContainer servers = d.GetMServers();
+
+    uint32_t serversMpiStride = numServers / systemCount;
+
+    for (uint32_t potentialSystemId = 0; potentialSystemId < systemCount; potentialSystemId++)
+    {
+        // Each server sends a packet to all other servers
+        if (potentialSystemId == systemId)
+        {
+            UdpEchoServerHelper echoServer(9);
+            ApplicationContainer serverApps;
+            uint32_t start = systemId * serversMpiStride;
+            uint32_t end = start + serversMpiStride;
+            for (uint32_t nodeIdx = start; nodeIdx < end; nodeIdx++)
+            {
+                serverApps.Add(echoServer.Install(servers.Get(nodeIdx)));
+            }
+            serverApps.Start(Seconds(1.0));
+            serverApps.Stop(Seconds(10.0));
+        }
+    }
+
     std::cout << "numServers: " << numServers << std::endl;
     // uint32_t packetNumber = 0;
     for (uint32_t sender = 0; sender < numServers; sender++)
     {
+        uint32_t lower = systemId * serversMpiStride;
+        uint32_t upper = lower + serversMpiStride;
+        if (sender < lower || sender >= upper)
+            continue;
         for (uint32_t receiver = 0; receiver < numServers; receiver++)
         {
             if (sender != receiver)
