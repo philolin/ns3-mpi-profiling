@@ -311,7 +311,7 @@ PointToPointFatTreeHelper::PointToPointFatTreeHelper(uint32_t numPods, PointToPo
     DistributedNodeCreateHelper(m_aggregateSwitches, numAggregatesTotal);
     DistributedNodeCreateHelper(m_coreSwitches, numCoreSTotal);
 
-        InternetStackHelper stack;
+    InternetStackHelper stack;
 
     // Connect servers to edge switches
     uint32_t hostId = 0;
@@ -761,21 +761,9 @@ main(int argc, char* argv[])
 
     d.AssignIpv4Addresses(Ipv4Address("10.0.0.0"), Ipv4Mask("/16"));
 
-    // uint32_t numCores = d.GetNumCores();
-    // NodeContainer cores = d.GetMServers();
-
-    // uint32_t numAggregates = d.GetNumAggregates();
-    // NodeContainer aggregates = d.GetMServers();
-
-    // uint32_t numEdges = d.GetNumEdges();
-    // NodeContainer edges = d.GetMServers();
-
     uint32_t numServers = d.GetNumServers();
     NodeContainer servers = d.GetMServers();
 
-    // uint32_t coresMpiStride = numCores / systemCount;
-    // uint32_t aggregatesMpiStride = numAggregates / systemCount;
-    // uint32_t edgesMpiStride = numEdges / systemCount;
     uint32_t serversMpiStride = numServers / systemCount;
 
     for (uint32_t potentialSystemId = 0; potentialSystemId < systemCount; potentialSystemId++)
@@ -784,39 +772,7 @@ main(int argc, char* argv[])
         if (potentialSystemId == systemId)
         {
             UdpEchoServerHelper echoServer(9);
-
-            // ApplicationContainer coreApps;
-            // ApplicationContainer aggregateApps;
-            // ApplicationContainer edgeApps;
             ApplicationContainer serverApps;
-
-            // uint32_t coreStart = systemId * coresMpiStride;
-            // uint32_t coreEnd = coreStart + coresMpiStride;
-            // for (uint32_t coreIdx = coreStart; coreIdx < coreEnd; coreIdx++)
-            // {
-            //     coreApps.Add(echoServer.Install(d.GetCoreSwitchNode(coreIdx)));
-            // }
-            // coreApps.Start(Seconds(1.0));
-            // coreApps.Stop(Seconds(10.0));
-
-            // uint32_t aggregateStart = systemId * aggregatesMpiStride;
-            // uint32_t aggregateEnd = aggregateStart + aggregatesMpiStride;
-            // for (uint32_t aggregateIdx = aggregateStart; aggregateIdx < aggregateEnd;
-            // aggregateIdx++)
-            // {
-            //     aggregateApps.Add(echoServer.Install(d.GetAggregateSwitchNode(aggregateIdx)));
-            // }
-            // aggregateApps.Start(Seconds(1.0));
-            // aggregateApps.Stop(Seconds(10.0));
-
-            // uint32_t edgeStart = systemId * edgesMpiStride;
-            // uint32_t edgeEnd = edgeStart + edgesMpiStride;
-            // for (uint32_t edgeIdx = edgeStart; edgeIdx < edgeEnd; edgeIdx++)
-            // {
-            //     edgeApps.Add(echoServer.Install(d.GetEdgeSwitchNode(edgeIdx)));
-            // }
-            // edgeApps.Start(Seconds(1.0));
-            // edgeApps.Stop(Seconds(10.0));
 
             uint32_t start = systemId * serversMpiStride;
             uint32_t serverEnd = start + serversMpiStride;
