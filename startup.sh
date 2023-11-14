@@ -17,3 +17,7 @@ cd ns-allinone-3.40/ns-3.40
 ./ns3 clean
 ./ns3 configure --build-profile=debug --enable-examples --enable-tests --enable-python-bindings --enable-mpi
 ./ns3 build -j8
+
+# graph
+sudo apt install -y python3-pip
+pip install -r requirements.txt

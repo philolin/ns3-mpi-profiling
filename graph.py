@@ -17,7 +17,7 @@ def run_simulation(num_cores, n_pods):
 def main():
     # Get the maximum number of cores on the machine
     max_cores = os.cpu_count()
-    
+    max_cores = 8
     n_pods = 2 ** int(math.log2(max_cores))
     
     # Initialize lists to store data for plotting
