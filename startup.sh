@@ -20,4 +20,4 @@ cd ns-allinone-3.40/ns-3.40
 
 # graph
 sudo apt install -y python3-pip
-pip install -r requirements.txt
+pip install -r $(pwd)/requirements.txt

@@ -6,7 +6,7 @@ import math
 from tqdm import tqdm
 
 def run_simulation(num_cores, n_pods):
-    command = f'cd ns-allinone-3.40/ns-3.40/; /usr/bin/time -f "%e" ./ns3 run scratch/fat-tree-animation-mpi.cc --command-template="mpiexec -np {num_cores} %s" -- --nPods={n_pods}'
+    command = f'cd ns-allinone-3.40/ns-3.40/; /usr/bin/time -f "%e" ./ns3 run scratch/fat-tree-animation-mpi.cc --command-template="mpiexec --oversubscribe -np {num_cores} %s" -- --nPods={n_pods}'
     # print(command)
     result = subprocess.run(command, shell=True, stderr=subprocess.PIPE, universal_newlines=True)
     # Extract the real time from the output
@@ -17,7 +17,6 @@ def run_simulation(num_cores, n_pods):
 def main():
     # Get the maximum number of cores on the machine
     max_cores = os.cpu_count()
-    max_cores = 8
     n_pods = 2 ** int(math.log2(max_cores))
     
     # Initialize lists to store data for plotting
@@ -45,7 +44,7 @@ def main():
     plt.xlabel('Number of Cores')
     plt.ylabel('Elapsed Time (seconds)')
     plt.grid(True)
-    plt.savefig('simulation_plot.png')
+    plt.savefig(f'{n_pods}-simulation_plot.png')
     plt.show()
 
 if __name__ == "__main__":
