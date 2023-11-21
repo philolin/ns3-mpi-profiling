@@ -246,8 +246,13 @@ class PointToPointFatTreeHelper
 
     NodeContainer GetMServers() const;
     uint32_t GetNumServers() const;
+    // below functions are meant for total number of Edge nodes, Aggregate nodes, and Core nodes.
+    // uint32_t GetNumEdges() const;
+    // uint32_t GetNumAggregates() const;
+    // uint32_t GetNumCores() const;
 
   private:
+    void DistributedNodeCreateHelper(NodeContainer& con, uint32_t numNodes);
     uint32_t m_numPods; //!< Number of pods
     std::vector<NetDeviceContainer>
         m_edgeSwitchDevices; //!< Net Device container for edge switches and servers
@@ -292,10 +297,19 @@ PointToPointFatTreeHelper::PointToPointFatTreeHelper(uint32_t numPods, PointToPo
     m_aggregateSwitchDevices.resize(numPods * numAggregateSwitches);
     m_coreSwitchDevices.resize(numGroups * numCoreSwitches);
 
-    m_servers.Create(numServers);
-    m_edgeSwitches.Create(numEdgeSwitches * numPods);
-    m_aggregateSwitches.Create(numAggregateSwitches * numPods);
-    m_coreSwitches.Create(numCoreSwitches * numGroups);
+    // m_servers.Create(numServers);
+    // m_edgeSwitches.Create(numEdgeSwitches * numPods);
+    // m_aggregateSwitches.Create(numAggregateSwitches * numPods);
+    // m_coreSwitches.Create(numCoreSwitches * numGroups);
+    uint32_t numServersTotal = numServers;
+    uint32_t numEdgesTotal = numEdgeSwitches * numPods;
+    uint32_t numAggregatesTotal = numAggregateSwitches * numPods;
+    uint32_t numCoreSTotal = numCoreSwitches * numGroups;
+
+    DistributedNodeCreateHelper(m_servers, numServersTotal);
+    DistributedNodeCreateHelper(m_edgeSwitches, numEdgesTotal);
+    DistributedNodeCreateHelper(m_aggregateSwitches, numAggregatesTotal);
+    DistributedNodeCreateHelper(m_coreSwitches, numCoreSTotal);
 
     InternetStackHelper stack;
 
@@ -661,6 +675,37 @@ PointToPointFatTreeHelper::GetNumServers() const
     return numServers;
 }
 
+void
+PointToPointFatTreeHelper::DistributedNodeCreateHelper(NodeContainer& con, uint32_t numNodes)
+{
+    uint32_t systemCount = MpiInterface::GetSize();
+
+    uint32_t nodeStride = numNodes / systemCount;
+
+    for (uint32_t i = 0; i < numNodes; i++)
+    {
+        con.Add(CreateObject<Node>(i / nodeStride));
+    }
+}
+
+// uint32_t
+// PointToPointFatTreeHelper::GetNumEdges() const
+// {
+//     return m_edgeSwitches.GetN();
+// }
+
+// uint32_t
+// PointToPointFatTreeHelper::GetNumAggregates() const
+// {
+//     return m_aggregateSwitches.GetN();
+// }
+
+// uint32_t
+// PointToPointFatTreeHelper::GetNumCores() const
+// {
+//     return m_coreSwitches.GetN();
+// }
+
 int
 main(int argc, char* argv[])
 {
@@ -723,16 +768,17 @@ main(int argc, char* argv[])
 
     for (uint32_t potentialSystemId = 0; potentialSystemId < systemCount; potentialSystemId++)
     {
-        // Each server sends a packet to all other servers
+        // Each server saggregateEnds a packet to all other servers
         if (potentialSystemId == systemId)
         {
             UdpEchoServerHelper echoServer(9);
             ApplicationContainer serverApps;
+
             uint32_t start = systemId * serversMpiStride;
-            uint32_t end = start + serversMpiStride;
-            for (uint32_t nodeIdx = start; nodeIdx < end; nodeIdx++)
+            uint32_t serverEnd = start + serversMpiStride;
+            for (uint32_t serverIdx = start; serverIdx < serverEnd; serverIdx++)
             {
-                serverApps.Add(echoServer.Install(servers.Get(nodeIdx)));
+                serverApps.Add(echoServer.Install(servers.Get(serverIdx)));
             }
             serverApps.Start(Seconds(1.0));
             serverApps.Stop(Seconds(10.0));
@@ -741,26 +787,26 @@ main(int argc, char* argv[])
 
     std::cout << "numServers: " << numServers << std::endl;
     // uint32_t packetNumber = 0;
-    for (uint32_t sender = 0; sender < numServers; sender++)
+    for (uint32_t saggregateEnder = 0; saggregateEnder < numServers; saggregateEnder++)
     {
         uint32_t lower = systemId * serversMpiStride;
         uint32_t upper = lower + serversMpiStride;
-        if (sender < lower || sender >= upper)
+        if (saggregateEnder < lower || saggregateEnder >= upper)
             continue;
         for (uint32_t receiver = 0; receiver < numServers; receiver++)
         {
-            if (sender != receiver)
+            if (saggregateEnder != receiver)
             {
                 UdpEchoClientHelper echoClient(d.GetServerIpv4Address(receiver),
                                                9); // Use the appropriate local IP address
-                // std::cout << "packet " << packetNumber << " sending from: " <<
-                // d.GetServerIpv4Address(sender) << " to " << d.GetServerIpv4Address(receiver) <<
-                // std::endl;
+                // std::cout << "packet " << packetNumber << " saggregateEnding from: " <<
+                // d.GetServerIpv4Address(saggregateEnder) << " to " <<
+                // d.GetServerIpv4Address(receiver) << std::aggregateEndl;
                 echoClient.SetAttribute("MaxPackets", UintegerValue(1));
                 echoClient.SetAttribute("Interval", TimeValue(Seconds(1.0)));
                 echoClient.SetAttribute("PacketSize", UintegerValue(1024));
 
-                ApplicationContainer clientApps = echoClient.Install(servers.Get(sender));
+                ApplicationContainer clientApps = echoClient.Install(servers.Get(saggregateEnder));
                 clientApps.Start(Seconds(2.0));
                 clientApps.Stop(Seconds(10.0));
                 // packetNumber += 1;
