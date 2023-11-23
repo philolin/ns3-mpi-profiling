@@ -37,7 +37,7 @@ def main():
 
             # Double the number of cores for the next iteration
             num_cores *= 2
-            
+        
         # Plot the results
         plt.plot(cores_list, times_list, marker='o')
         plt.title('Simulation Time vs Number of Cores')
@@ -48,7 +48,7 @@ def main():
         # plt.show()
         
         # Log output
-        with open(f'run-{i}-output.txt', "w") as f:
+        with open(f'outputs/run-{i}-output.txt', "w") as f:
             f.write(f'{cores_list}\n{times_list}')
 
 if __name__ == "__main__":
