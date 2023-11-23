@@ -21,6 +21,7 @@ def main():
     n_pods = 2 ** int(math.log2(max_cores))
     
     for i in range(RUNS):
+        print(f"On run {i} ...")
         # Initialize lists to store data for plotting
         cores_list = []
         times_list = []
@@ -43,11 +44,11 @@ def main():
         plt.xlabel('Number of Cores')
         plt.ylabel('Elapsed Time (seconds)')
         plt.grid(True)
-        plt.savefig(f'{n_pods}-cores-run-{i+1}-simulation_plot.png')
+        plt.savefig(f'{n_pods}-cores-run-{i}-simulation_plot.png')
         # plt.show()
         
         # Log output
-        with open(f'run-{i+1}-output.txt', "w") as f:
+        with open(f'run-{i}-output.txt', "w") as f:
             f.write(f'{cores_list}\n{times_list}')
 
 if __name__ == "__main__":
