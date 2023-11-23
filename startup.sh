@@ -29,3 +29,4 @@ pip install -r $(pwd)/requirements.txt
 
 chmod u+x line-graph.py
 chmod u+x stacked-bar-graph.py
+
