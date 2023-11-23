@@ -6,3 +6,6 @@ Philo Lin and Sizhan Xu
 1. `./startup.sh`
 2. `./ns3 run scratch/k-fat-tree.cc`
 3. `./ns3 run src/mpi/examples/simple-distributed --command-template="mpiexec -np 2 %s"`
+
+## To use scalasca to profile MPI runs
+Run `install_scalasca.sh`.
