@@ -712,8 +712,8 @@ main(int argc, char* argv[])
     Config::SetDefault("ns3::OnOffApplication::PacketSize", UintegerValue(512));
     Config::SetDefault("ns3::OnOffApplication::DataRate", StringValue("500kb/s"));
 
-    LogComponentEnable("UdpEchoClientApplication", LOG_LEVEL_INFO);
-    LogComponentEnable("UdpEchoServerApplication", LOG_LEVEL_INFO);
+    // LogComponentEnable("UdpEchoClientApplication", LOG_LEVEL_INFO);
+    // LogComponentEnable("UdpEchoServerApplication", LOG_LEVEL_INFO);
 
     uint32_t nPods = 4;
     std::string animFile = "fat-tree-animation.xml"; // Name of file for animation output
@@ -785,7 +785,7 @@ main(int argc, char* argv[])
         }
     }
 
-    std::cout << "numServers: " << numServers << std::endl;
+    // std::cout << "numServers: " << numServers << std::endl;
     // uint32_t packetNumber = 0;
     for (uint32_t saggregateEnder = 0; saggregateEnder < numServers; saggregateEnder++)
     {
@@ -826,7 +826,7 @@ main(int argc, char* argv[])
     // Ipv4GlobalRoutingHelper::PopulateRoutingTables ();
 
     Simulator::Run();
-    std::cout << "Animation Trace file created:" << animFile.c_str() << std::endl;
+    // std::cout << "Animation Trace file created:" << animFile.c_str() << std::endl;
     Simulator::Destroy();
 
     MpiInterface::Disable();
