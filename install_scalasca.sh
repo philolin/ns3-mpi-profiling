@@ -8,10 +8,12 @@ fi
 
 cd /opt
 wget https://adv-network.us-southeast-1.linodeobjects.com/scalasca.zip
-unzip sclasca.zip
+unzip scalasca.zip
 
 export PATH="/opt/scorep/bin:$PATH"
 export PATH="/opt/cubelib/bin:$PATH"
 export PATH="/opt/scalasca/bin:$PATH"
+
+rm scalasca.zip
 
 cd -
