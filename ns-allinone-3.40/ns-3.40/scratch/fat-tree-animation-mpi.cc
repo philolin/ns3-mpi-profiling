@@ -312,6 +312,7 @@ PointToPointFatTreeHelper::PointToPointFatTreeHelper(uint32_t numPods, PointToPo
     DistributedNodeCreateHelper(m_coreSwitches, numCoreSTotal);
 
     InternetStackHelper stack;
+    
 
     // Connect servers to edge switches
     uint32_t hostId = 0;
