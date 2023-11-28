@@ -27,10 +27,13 @@ cd "$current_dir"
 sudo apt install -y python3-pip
 pip install -r $(pwd)/requirements.txt
 
-chmod u+x line-graph.py
-chmod u+x stacked-bar-graph.py
+# chmod u+x line-graph.py
+# chmod u+x stacked-bar-graph.py
 
 # profiling
-export PATH="/opt/scorep/bin:$PATH"
-export PATH="/opt/cubelib/bin:$PATH"
-export PATH="/opt/scalasca/bin:$PATH"
+# sudo ./install_scalasca.sh
+# cd ns-allinone-3.40/ns-3.40/cmake-cache
+# cmake --build . --target ns3.40-fat-tree-animation-mpi-debug -v
+# export PATH="/opt/scorep/bin:$PATH"
+# export PATH="/opt/cubelib/bin:$PATH"
+# export PATH="/opt/scalasca/bin:$PATH"

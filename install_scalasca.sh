@@ -11,7 +11,7 @@ apt install binutils-dev
 
 cd /opt
 wget https://adv-network.us-southeast-1.linodeobjects.com/scalasca.zip
-unzip scalasca.zip
+unzip -o scalasca.zip
 
 export PATH="/opt/scorep/bin:$PATH"
 export PATH="/opt/cubelib/bin:$PATH"
