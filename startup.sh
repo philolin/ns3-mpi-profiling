@@ -30,3 +30,7 @@ pip install -r $(pwd)/requirements.txt
 chmod u+x line-graph.py
 chmod u+x stacked-bar-graph.py
 
+# profiling
+export PATH="/opt/scorep/bin:$PATH"
+export PATH="/opt/cubelib/bin:$PATH"
+export PATH="/opt/scalasca/bin:$PATH"
