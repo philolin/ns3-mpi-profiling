@@ -1,0 +1,3 @@
+S=C=A=N: Tue Nov 28 18:10:10 2023: Collect start
+/usr/bin/mpirun --oversubscribe -np 1 ../../../ns-allinone-3.40/ns-3.40/build/scratch/ns3.40-fat-tree-animation-mpi-debug --nPods=8
+S=C=A=N: Tue Nov 28 18:18:09 2023: Collect done (status=0) 479s

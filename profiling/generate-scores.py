@@ -19,7 +19,7 @@ def log():
     # Get the maximum number of cores on the machine
     max_cores = os.cpu_count()
     n_pods = 2 ** int(math.log2(max_cores))
-    # n_pods = 8
+    n_pods = 8
     
     for i in range(RUNS):
         # Initialize lists to store data for plotting
