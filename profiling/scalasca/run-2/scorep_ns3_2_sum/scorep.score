@@ -1,0 +1,245 @@
+
+Estimated aggregate size of event trace:                   39GB
+Estimated requirements for largest trace buffer (max_buf): 20GB
+Estimated memory requirements (SCOREP_TOTAL_MEMORY):       20GB
+(warning: The memory requirements cannot be satisfied by Score-P to avoid
+ intermediate flushes when tracing. Set SCOREP_TOTAL_MEMORY=4G to get the
+ maximum supported memory or reduce requirements using USR regions filters.)
+
+flt     type     max_buf[B]        visits time[s] time[%] time/visit[us]  region
+         ALL 21,190,350,889 1,606,949,267  522.83   100.0           0.33  ALL
+         USR 21,186,821,812 1,606,822,145  302.58    57.9           0.19  USR
+         MPI      3,529,010       127,118   23.27     4.5         183.08  MPI
+      SCOREP             41             2    0.55     0.1      273054.53  SCOREP
+         COM             26             2  196.43    37.6    98213033.27  COM
+
+         USR  5,479,449,222   417,869,245   48.93     9.4           0.12  ns3::SimpleRefCount<ns3::Object, ns3::ObjectBase, ns3::ObjectDeleter>::Unref() const
+         USR  5,474,436,370   417,510,258   77.78    14.9           0.19  ns3::SimpleRefCount<ns3::Object, ns3::ObjectBase, ns3::ObjectDeleter>::Ref() const
+         USR  3,269,079,788   250,766,482   54.20    10.4           0.22  ns3::Ptr<ns3::NetDevice>::~Ptr()
+         USR  2,033,598,788   156,368,469   28.41     5.4           0.18  ns3::Ptr<ns3::Node>::operator->()
+         USR    527,108,244    40,517,479    3.91     0.7           0.10  ns3::Node* ns3::PeekPointer<ns3::Node>(ns3::Ptr<ns3::Node> const&)
+         USR    412,394,164    31,693,319    8.05     1.5           0.25  ns3::Ptr<ns3::Node>::~Ptr()
+         USR    410,582,900    31,553,991   11.36     2.2           0.36  ns3::Ptr<ns3::Node>::Ptr(ns3::Ptr<ns3::Node> const&)
+         USR    409,520,436    31,472,263    5.42     1.0           0.17  ns3::Ptr<ns3::Node>::Acquire() const
+         USR    254,488,962    18,345,105    5.96     1.1           0.32  ns3::TypeId::~TypeId()
+         USR    246,924,730    17,826,345    5.03     1.0           0.28  ns3::SimpleRefCount<ns3::AttributeValue, ns3::Empty, ns3::DefaultDeleter<ns3::AttributeValue> >::Unref() const
+         USR    231,526,854    16,686,468    2.24     0.4           0.13  ns3::AttributeChecker const* ns3::PeekPointer<ns3::AttributeChecker const>(ns3::Ptr<ns3::AttributeChecker const> const&)
+         USR    212,759,924    15,358,753    4.29     0.8           0.28  ns3::SimpleRefCount<ns3::AttributeValue, ns3::Empty, ns3::DefaultDeleter<ns3::AttributeValue> >::Ref() const
+         USR    193,730,238    13,966,668    5.21     1.0           0.37  ns3::TypeId::TypeId(ns3::TypeId const&)
+         USR    155,472,616    10,643,581    3.33     0.6           0.31  ns3::Time::~Time()
+         USR    145,652,910    11,203,042    4.20     0.8           0.38  ns3::NetDeviceContainer::~NetDeviceContainer()
+         USR    145,652,910    11,203,042    1.10     0.2           0.10  std::_Vector_base<ns3::Ptr<ns3::NetDevice>, std::allocator<ns3::Ptr<ns3::NetDevice> > >::_Vector_impl::~_Vector_impl()
+         USR    137,867,314     9,883,063    3.14     0.6           0.32  std::__shared_count<(__gnu_cxx::_Lock_policy)2>::~__shared_count()
+         USR    133,662,230     9,648,745    0.83     0.2           0.09  ns3::SimpleRefCount<ns3::AttributeChecker, ns3::Empty, ns3::DefaultDeleter<ns3::AttributeChecker> >::Ref() const
+         USR    133,662,230     9,648,745    0.83     0.2           0.09  ns3::SimpleRefCount<ns3::AttributeChecker, ns3::Empty, ns3::DefaultDeleter<ns3::AttributeChecker> >::Unref() const
+         USR    133,654,872     9,648,179    1.77     0.3           0.18  ns3::Ptr<ns3::AttributeChecker const>::Acquire() const
+         USR    133,639,740     9,647,015    3.83     0.7           0.40  ns3::Ptr<ns3::AttributeChecker const>::~Ptr()
+         USR    120,412,110     8,691,910    4.16     0.8           0.48  ns3::Ptr<ns3::AttributeChecker const>::Ptr(ns3::Ptr<ns3::AttributeChecker const> const&)
+         USR    107,573,778     7,713,261    1.38     0.3           0.18  std::_Sp_counted_base<(__gnu_cxx::_Lock_policy)2>::_M_release()
+         USR     77,575,940     5,566,205    0.70     0.1           0.13  std::_Sp_counted_base<(__gnu_cxx::_Lock_policy)2>::_M_add_ref_copy()
+         USR     67,116,712     4,850,799    1.73     0.3           0.36  ns3::Ptr<ns3::AttributeValue>::Acquire() const
+         USR     67,116,166     4,850,757    1.74     0.3           0.36  ns3::Ptr<ns3::AttributeValue>::~Ptr()
+         USR     60,586,032     4,339,524    1.63     0.3           0.38  std::__shared_count<(__gnu_cxx::_Lock_policy)2>::__shared_count(std::__shared_count<(__gnu_cxx::_Lock_policy)2> const&)
+         USR     37,509,654     2,707,058    0.63     0.1           0.23  ns3::AttributeValue* ns3::PeekPointer<ns3::AttributeValue>(ns3::Ptr<ns3::AttributeValue> const&)
+         USR     34,206,458     2,470,796    0.67     0.1           0.27  ns3::DefaultDeleter<ns3::AttributeValue>::Delete(ns3::AttributeValue*)
+         USR     30,293,536     2,169,802    0.61     0.1           0.28  std::__shared_count<(__gnu_cxx::_Lock_policy)2>::_M_swap(std::__shared_count<(__gnu_cxx::_Lock_policy)2>&)
+         USR     30,293,432     2,169,794    0.65     0.1           0.30  std::__shared_count<(__gnu_cxx::_Lock_policy)2>::__shared_count()
+         USR     30,162,730     2,159,740    0.70     0.1           0.32  std::_Sp_counted_base<(__gnu_cxx::_Lock_policy)2>::_Sp_counted_base()
+         USR     29,997,838     2,147,056    0.18     0.0           0.08  std::_Sp_counted_base<(__gnu_cxx::_Lock_policy)2>::~_Sp_counted_base()
+         USR     22,682,504     1,529,313    0.32     0.1           0.21  ns3::Time::PeekInformation(ns3::Time::Unit)
+         USR     22,682,504     1,529,313    0.14     0.0           0.09  ns3::Time::PeekResolution()
+         USR     16,299,322     1,135,010    0.12     0.0           0.11  ns3::int64x64_t::int64x64_t(ns3::int64x64_t const&)
+         USR     13,187,980       952,055    0.41     0.1           0.43  ns3::Ptr<ns3::AttributeValue>::Ptr(ns3::Ptr<ns3::AttributeValue> const&)
+         USR      9,392,630       677,935    0.18     0.0           0.26  ns3::Ptr<ns3::Object>::~Ptr()
+         USR      9,148,100       659,125    0.14     0.0           0.21  ns3::TimeValue::~TimeValue()
+         USR      7,385,898       532,486    0.13     0.0           0.25  ns3::TimeValue::~TimeValue()
+         USR      6,844,526       480,964    0.05     0.0           0.11  ns3::int64x64_t::int64x64_t(long, unsigned long)
+         USR      6,844,526       480,964    0.05     0.0           0.10  ns3::int64x64_t::GetHigh() const
+         USR      6,844,292       480,946    0.23     0.0           0.48  ns3::Time::From(ns3::int64x64_t const&, ns3::Time::Unit)
+         USR      6,844,292       480,946    0.10     0.0           0.21  ns3::operator*=(ns3::int64x64_t&, ns3::int64x64_t const&)
+         USR      6,844,292       480,946    0.17     0.0           0.36  ns3::Time::Time(ns3::int64x64_t const&)
+         USR      6,844,292       480,946    0.22     0.0           0.46  ns3::int64x64_t::Round() const
+         USR      6,844,292       480,946    0.05     0.0           0.10  ns3::operator+=(ns3::int64x64_t&, ns3::int64x64_t const&)
+         USR      6,611,072       450,879    0.11     0.0           0.24  ns3::Ptr<ns3::Ipv4>::~Ptr()
+         USR      6,576,310       488,040    0.07     0.0           0.14  ns3::UintegerValue::~UintegerValue()
+         USR      5,843,344       431,658    0.12     0.0           0.27  ns3::UintegerValue::~UintegerValue()
+         USR      5,794,438       418,981    0.06     0.0           0.15  ns3::Object* ns3::PeekPointer<ns3::Object>(ns3::Ptr<ns3::Object> const&)
+         USR      5,750,004       413,361    1.92     0.4           4.66  ns3::ObjectDeleter::Delete(ns3::Object*)
+         USR      5,383,768       396,306    0.14     0.0           0.35  ns3::AttributeConstructionList::Item::~Item()
+         USR      4,233,606       307,832    0.08     0.0           0.25  ns3::int64x64_t::int64x64_t(double)
+         USR      4,233,606       307,832    0.39     0.1           1.26  ns3::int64x64_t::int64x64_t(long double)
+         USR      4,233,554       307,828    0.14     0.0           0.46  ns3::Time::FromDouble(double, ns3::Time::Unit)
+         USR      2,983,526       229,502    0.04     0.0           0.19  ns3::Ptr<ns3::Application>::~Ptr()
+         USR      2,691,910       198,155    0.09     0.0           0.48  ns3::AttributeConstructionList::Item::Item(ns3::AttributeConstructionList::Item const&)
+         USR      2,564,276       188,337    0.03     0.0           0.18  ns3::Ptr<ns3::Object>::operator bool() const
+         USR      2,387,736       174,757    0.04     0.0           0.21  ns3::AttributeConstructionList::~AttributeConstructionList()
+         USR      2,387,736       174,757    0.10     0.0           0.55  std::__cxx11::list<ns3::AttributeConstructionList::Item, std::allocator<ns3::AttributeConstructionList::Item> >::~list()
+         USR      2,387,736       174,757    0.03     0.0           0.17  std::__cxx11::_List_base<ns3::AttributeConstructionList::Item, std::allocator<ns3::AttributeConstructionList::Item> >::_List_impl::~_List_impl()
+         USR      1,953,744       141,373    0.05     0.0           0.33  ns3::ObjectFactory::~ObjectFactory()
+         USR      1,177,696        90,592    0.02     0.0           0.25  ns3::Ptr<ns3::Object>::Acquire() const
+         MPI      1,163,230        25,804    0.05     0.0           2.05  MPI_Irecv
+         MPI      1,163,052        25,800    0.08     0.0           3.16  MPI_Isend
+         USR      1,098,032        84,464    0.02     0.0           0.23  ns3::Seconds(double)
+         MPI        495,066        37,746    0.05     0.0           1.24  MPI_Testany
+         USR        422,942        32,534    0.01     0.0           0.19  std::_Vector_base<ns3::Ptr<ns3::Node>, std::allocator<ns3::Ptr<ns3::Node> > >::_Vector_impl::~_Vector_impl()
+         MPI        406,164        11,946   21.78     4.2        1823.20  MPI_Allgather
+         MPI        339,768        25,800    0.02     0.0           0.73  MPI_Test
+         USR        213,018        16,386    0.01     0.0           0.52  ns3::ApplicationContainer::~ApplicationContainer()
+         USR        213,018        16,386    0.00     0.0           0.13  std::_Vector_base<ns3::Ptr<ns3::Application>, std::allocator<ns3::Ptr<ns3::Application> > >::_Vector_impl::~_Vector_impl()
+         USR        211,328        16,256    0.03     0.0           2.03  PointToPointFatTreeHelper::GetServerIpv4Address(unsigned int) const
+         USR        211,328        16,256    0.00     0.0           0.24  ns3::UdpEchoClientHelper::~UdpEchoClientHelper()
+         USR        189,280        14,560    0.00     0.0           0.19  ns3::Ptr<ns3::Ipv6>::~Ptr()
+         USR        122,902         9,454    0.00     0.0           0.19  ns3::StringValue::~StringValue()
+         USR         79,924         6,148    0.00     0.0           0.26  ns3::StringValue::~StringValue()
+         USR         59,800         4,600    0.00     0.0           0.17  std::pair<ns3::Ptr<ns3::Ipv4>, unsigned int>::~pair()
+         USR         56,160         4,320    0.00     0.0           0.27  std::__cxx11::list<ns3::WifiPhyBand, std::allocator<ns3::WifiPhyBand> >::~list()
+         USR         56,160         4,320    0.00     0.0           0.08  std::__cxx11::_List_base<ns3::WifiPhyBand, std::allocator<ns3::WifiPhyBand> >::_List_impl::~_List_impl()
+         USR         40,118         3,086    0.00     0.0           0.34  ns3::ObjectFactory::ObjectFactory(ns3::ObjectFactory const&)
+         USR         40,118         3,086    0.00     0.0           0.35  ns3::AttributeConstructionList::AttributeConstructionList(ns3::AttributeConstructionList const&)
+         USR         30,056         2,312    0.00     0.0           0.11  std::_Vector_base<std::pair<ns3::Ptr<ns3::Ipv4>, unsigned int>, std::allocator<std::pair<ns3::Ptr<ns3::Ipv4>, unsigned int> > >::_Vector_impl::~_Vector_impl()
+         USR         28,080         2,160    0.00     0.0           0.50  std::pair<ns3::WifiStandard const, std::__cxx11::list<ns3::WifiPhyBand, std::allocator<ns3::WifiPhyBand> > >::pair(std::pair<ns3::WifiStandard const, std::__cxx11::list<ns3::WifiPhyBand, std::allocator<ns3::WifiPhyBand> > > const&)
+         USR         28,080         2,160    0.00     0.0           0.18  std::pair<ns3::WifiStandard const, std::__cxx11::list<ns3::WifiPhyBand, std::allocator<ns3::WifiPhyBand> > >::~pair()
+         USR         20,072         1,544    0.00     0.0           0.35  ns3::Ipv4InterfaceContainer::~Ipv4InterfaceContainer()
+         USR         10,816           832    0.00     0.0           0.12  ns3::Ptr<ns3::ConstantPositionMobilityModel>::Acquire() const
+         USR         10,816           832    0.00     0.0           0.23  ns3::Ptr<ns3::ConstantPositionMobilityModel>::~Ptr()
+         USR          9,984           768    0.00     0.0           1.13  ns3::Ipv4InterfaceContainer::operator=(ns3::Ipv4InterfaceContainer&&)
+         USR          5,408           416    0.01     0.0          22.05  ns3::Ptr<ns3::Node> ns3::CreateObject<ns3::Node, unsigned int>(unsigned int&&)
+         USR          5,408           416    0.02     0.0          47.28  ns3::Ptr<ns3::Node> ns3::CompleteConstruct<ns3::Node>(ns3::Node*)
+         USR          5,408           416    0.00     0.0           0.26  ns3::Ptr<ns3::Node>::Ptr(ns3::Node*, bool)
+         USR          5,408           416    0.02     0.0          44.67  ns3::Ptr<ns3::ConstantPositionMobilityModel> ns3::Object::GetObject<ns3::ConstantPositionMobilityModel>() const
+         USR          5,408           416    0.00     0.0           0.21  ns3::Ptr<ns3::ConstantPositionMobilityModel>::Ptr(ns3::ConstantPositionMobilityModel*)
+         USR          5,408           416    0.00     0.0           0.16  ns3::Ptr<ns3::ConstantPositionMobilityModel>::operator ns3::Ptr<ns3::ConstantPositionMobilityModel>::Tester*() const
+         USR          5,408           416    0.00     0.0           0.79  ns3::Ptr<ns3::ConstantPositionMobilityModel> ns3::CreateObject<ns3::ConstantPositionMobilityModel>()
+         USR          5,408           416    0.00     0.0           5.76  ns3::Ptr<ns3::ConstantPositionMobilityModel> ns3::CompleteConstruct<ns3::ConstantPositionMobilityModel>(ns3::ConstantPositionMobilityModel*)
+         USR          5,408           416    0.00     0.0           0.09  ns3::Ptr<ns3::ConstantPositionMobilityModel>::Ptr(ns3::ConstantPositionMobilityModel*, bool)
+         USR          5,408           416    0.00     0.0           0.23  ns3::Ptr<ns3::ConstantPositionMobilityModel>::operator=(ns3::Ptr<ns3::ConstantPositionMobilityModel> const&)
+         USR          5,408           416    0.00     0.0           0.33  ns3::Ptr<ns3::Object>::Ptr<ns3::ConstantPositionMobilityModel>(ns3::Ptr<ns3::ConstantPositionMobilityModel> const&)
+         USR          5,408           416    0.00     0.0           0.08  ns3::ConstantPositionMobilityModel* ns3::PeekPointer<ns3::ConstantPositionMobilityModel>(ns3::Ptr<ns3::ConstantPositionMobilityModel> const&)
+         USR          5,408           416    0.00     0.0           0.11  ns3::Ptr<ns3::ConstantPositionMobilityModel>::operator->()
+         USR            260            20    0.00     0.0           1.29  std::shared_ptr<ns3::CommandLine::Item>::~shared_ptr()
+         USR            260            20    0.00     0.0           0.25  std::__shared_ptr<ns3::CommandLine::Item, (__gnu_cxx::_Lock_policy)2>::~__shared_ptr()
+         USR            260            20    0.00     0.0           1.61  ns3::Ipv4StaticRoutingHelper::~Ipv4StaticRoutingHelper()
+         USR            260            20    0.00     0.0           8.79  ns3::NodeContainer::~NodeContainer()
+         USR            182            14    0.00     0.0           3.98  ns3::Ipv4StaticRoutingHelper::~Ipv4StaticRoutingHelper()
+         USR            156            12    0.00     0.0           1.33  std::shared_ptr<ns3::CommandLine::Item>::shared_ptr(std::shared_ptr<ns3::CommandLine::Item>&&)
+         USR            156            12    0.00     0.0           0.32  std::__shared_ptr<ns3::CommandLine::Item, (__gnu_cxx::_Lock_policy)2>::__shared_ptr(std::__shared_ptr<ns3::CommandLine::Item, (__gnu_cxx::_Lock_policy)2>&&)
+         USR            130            10    0.00     0.0           7.83  ns3::NodeContainer::NodeContainer(ns3::NodeContainer const&)
+         USR            104             8    0.00     0.0           1.92  std::__shared_ptr_access<ns3::CommandLine::UserItem<unsigned int>, (__gnu_cxx::_Lock_policy)2, false, false>::operator->() const
+         USR            104             8    0.00     0.0           1.68  std::__shared_ptr_access<ns3::CommandLine::UserItem<unsigned int>, (__gnu_cxx::_Lock_policy)2, false, false>::_M_get() const
+         USR            104             8    0.00     0.0           0.11  std::__shared_ptr<ns3::CommandLine::UserItem<unsigned int>, (__gnu_cxx::_Lock_policy)2>::get() const
+         USR            104             8    0.00     0.0           2.12  std::__shared_ptr_access<ns3::CommandLine::UserItem<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, (__gnu_cxx::_Lock_policy)2, false, false>::operator->() const
+         USR            104             8    0.00     0.0           1.86  std::__shared_ptr_access<ns3::CommandLine::UserItem<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, (__gnu_cxx::_Lock_policy)2, false, false>::_M_get() const
+         USR            104             8    0.00     0.0           0.12  std::__shared_ptr<ns3::CommandLine::UserItem<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, (__gnu_cxx::_Lock_policy)2>::get() const
+         USR            104             8    0.00     0.0           2.38  std::__shared_ptr_access<ns3::CommandLine::UserItem<bool>, (__gnu_cxx::_Lock_policy)2, false, false>::operator->() const
+         USR            104             8    0.00     0.0           1.62  std::__shared_ptr_access<ns3::CommandLine::UserItem<bool>, (__gnu_cxx::_Lock_policy)2, false, false>::_M_get() const
+         USR            104             8    0.00     0.0           0.11  std::__shared_ptr<ns3::CommandLine::UserItem<bool>, (__gnu_cxx::_Lock_policy)2>::get() const
+         USR            104             8    0.00     0.0         116.34  PointToPointFatTreeHelper::DistributedNodeCreateHelper(ns3::NodeContainer&, unsigned int)
+         USR            104             8    0.00     0.0           0.51  ns3::NixVectorHelper<ns3::Ipv4RoutingHelper>::~NixVectorHelper()
+         USR            104             8    0.00     0.0           3.53  ns3::Ipv6InterfaceContainer::~Ipv6InterfaceContainer()
+         USR            104             8    0.00     0.0           0.14  std::_Vector_base<std::pair<ns3::Ptr<ns3::Ipv6>, unsigned int>, std::allocator<std::pair<ns3::Ptr<ns3::Ipv6>, unsigned int> > >::_Vector_impl::~_Vector_impl()
+         MPI             78             6    0.00     0.0           4.22  MPI_Initialized
+         USR             78             6    0.00     0.0           0.33  std::_Sp_counted_ptr_inplace<ns3::CommandLine::UserItem<unsigned int>, std::allocator<ns3::CommandLine::UserItem<unsigned int> >, (__gnu_cxx::_Lock_policy)2>::_M_ptr()
+         USR             78             6    0.00     0.0           0.24  ns3::CommandLine::Item::Item()
+         USR             78             6    0.00     0.0           0.28  std::_Sp_counted_ptr_inplace<ns3::CommandLine::UserItem<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<ns3::CommandLine::UserItem<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >, (__gnu_cxx::_Lock_policy)2>::_M_ptr()
+         USR             78             6    0.00     0.0           0.28  std::_Sp_counted_ptr_inplace<ns3::CommandLine::UserItem<bool>, std::allocator<ns3::CommandLine::UserItem<bool> >, (__gnu_cxx::_Lock_policy)2>::_M_ptr()
+         USR             78             6    0.00     0.0           8.40  std::vector<ns3::NetDeviceContainer, std::allocator<ns3::NetDeviceContainer> >::vector()
+         USR             78             6    0.00     0.0           0.53  std::_Vector_base<ns3::NetDeviceContainer, std::allocator<ns3::NetDeviceContainer> >::_Vector_base()
+         USR             78             6    0.00     0.0           3.25  ns3::NixVectorHelper<ns3::Ipv4RoutingHelper>::~NixVectorHelper()
+         USR             78             6    0.00     0.0           0.18  std::_Vector_base<ns3::NetDeviceContainer, std::allocator<ns3::NetDeviceContainer> >::_Vector_impl::~_Vector_impl()
+         MPI             68             2    0.21     0.0      107175.42  MPI_Allreduce
+         MPI             68             2    0.00     0.0           5.38  MPI_Barrier
+         USR             52             4    0.00     0.0          17.38  ns3::PointToPointHelper::~PointToPointHelper()
+         USR             52             4    0.00     0.0           0.29  ns3::AsciiTraceHelperForDevice::~AsciiTraceHelperForDevice()
+         USR             52             4    0.00     0.0           0.26  ns3::PcapHelperForDevice::~PcapHelperForDevice()
+         USR             52             4    0.00     0.0           4.15  std::_Sp_counted_ptr_inplace<ns3::CommandLine::UserItem<unsigned int>, std::allocator<ns3::CommandLine::UserItem<unsigned int> >, (__gnu_cxx::_Lock_policy)2>::_Impl::_M_alloc()
+         USR             52             4    0.00     0.0           0.19  std::_Sp_ebo_helper<0, std::allocator<ns3::CommandLine::UserItem<unsigned int> >, true>::_S_get(std::_Sp_ebo_helper<0, std::allocator<ns3::CommandLine::UserItem<unsigned int> >, true>&)
+         USR             52             4    0.00     0.0           4.77  std::_Sp_counted_ptr_inplace<ns3::CommandLine::UserItem<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<ns3::CommandLine::UserItem<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >, (__gnu_cxx::_Lock_policy)2>::_Impl::_M_alloc()
+         USR             52             4    0.00     0.0           0.18  std::_Sp_ebo_helper<0, std::allocator<ns3::CommandLine::UserItem<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >, true>::_S_get(std::_Sp_ebo_helper<0, std::allocator<ns3::CommandLine::UserItem<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >, true>&)
+         USR             52             4    0.00     0.0           3.40  std::_Sp_counted_ptr_inplace<ns3::CommandLine::UserItem<bool>, std::allocator<ns3::CommandLine::UserItem<bool> >, (__gnu_cxx::_Lock_policy)2>::_Impl::_M_alloc()
+         USR             52             4    0.00     0.0           0.17  std::_Sp_ebo_helper<0, std::allocator<ns3::CommandLine::UserItem<bool> >, true>::_S_get(std::_Sp_ebo_helper<0, std::allocator<ns3::CommandLine::UserItem<bool> >, true>&)
+      SCOREP             41             2    0.55     0.1      273054.53  ns3.40-fat-tree-animation-mpi-debug
+         MPI             26             2    0.00     0.0          91.86  MPI_Comm_dup
+         MPI             26             2    0.00     0.0          21.69  MPI_Comm_free
+         MPI             26             2    0.00     0.0           0.98  MPI_Comm_rank
+         MPI             26             2    0.00     0.0           0.85  MPI_Comm_size
+         MPI             26             2    0.54     0.1      267752.59  MPI_Finalize
+         MPI             26             2    0.54     0.1      271037.23  MPI_Init
+         USR             26             2    0.00     0.0          56.95  _GLOBAL__sub_I__ZN25PointToPointFatTreeHelperC2EjN3ns318PointToPointHelperE
+         USR             26             2    0.00     0.0          24.81  __static_initialization_and_destruction_0(int, int)
+         COM             26             2  196.43    37.6    98213033.27  main
+         USR             26             2    0.00     0.0          59.77  void ns3::CommandLine::AddValue<unsigned int>(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, unsigned int&)
+         USR             26             2    0.00     0.0           9.32  std::shared_ptr<ns3::CommandLine::UserItem<unsigned int> > std::make_shared<ns3::CommandLine::UserItem<unsigned int>>()
+         USR             26             2    0.00     0.0           8.58  std::shared_ptr<ns3::CommandLine::UserItem<unsigned int> > std::allocate_shared<ns3::CommandLine::UserItem<unsigned int>, std::allocator<ns3::CommandLine::UserItem<unsigned int> >>(std::allocator<ns3::CommandLine::UserItem<unsigned int> > const&)
+         USR             26             2    0.00     0.0           9.76  std::shared_ptr<ns3::CommandLine::UserItem<unsigned int> >::shared_ptr<std::allocator<ns3::CommandLine::UserItem<unsigned int> >>(std::_Sp_alloc_shared_tag<std::allocator<ns3::CommandLine::UserItem<unsigned int> > >)
+         USR             26             2    0.00     0.0          30.57  std::__shared_ptr<ns3::CommandLine::UserItem<unsigned int>, (__gnu_cxx::_Lock_policy)2>::__shared_ptr<std::allocator<ns3::CommandLine::UserItem<unsigned int> >>(std::_Sp_alloc_shared_tag<std::allocator<ns3::CommandLine::UserItem<unsigned int> > >)
+         USR             26             2    0.00     0.0           9.19  std::__shared_count<(__gnu_cxx::_Lock_policy)2>::__shared_count<ns3::CommandLine::UserItem<unsigned int>, std::allocator<ns3::CommandLine::UserItem<unsigned int> >>(ns3::CommandLine::UserItem<unsigned int>*&, std::_Sp_alloc_shared_tag<std::allocator<ns3::CommandLine::UserItem<unsigned int> > >)
+         USR             26             2    0.00     0.0          21.07  std::_Sp_counted_ptr_inplace<ns3::CommandLine::UserItem<unsigned int>, std::allocator<ns3::CommandLine::UserItem<unsigned int> >, (__gnu_cxx::_Lock_policy)2>::_Sp_counted_ptr_inplace<>(std::allocator<ns3::CommandLine::UserItem<unsigned int> >)
+         USR             26             2    0.00     0.0           8.06  std::_Sp_counted_ptr_inplace<ns3::CommandLine::UserItem<unsigned int>, std::allocator<ns3::CommandLine::UserItem<unsigned int> >, (__gnu_cxx::_Lock_policy)2>::_Impl::_Impl(std::allocator<ns3::CommandLine::UserItem<unsigned int> >)
+         USR             26             2    0.00     0.0           1.97  std::_Sp_ebo_helper<0, std::allocator<ns3::CommandLine::UserItem<unsigned int> >, true>::_Sp_ebo_helper(std::allocator<ns3::CommandLine::UserItem<unsigned int> > const&)
+         USR             26             2    0.00     0.0           4.67  ns3::CommandLine::UserItem<unsigned int>::UserItem()
+         USR             26             2    0.00     0.0           0.31  std::enable_if<!std::__shared_ptr<ns3::CommandLine::UserItem<unsigned int>, (__gnu_cxx::_Lock_policy)2>::__has_esft_base<ns3::CommandLine::UserItem<unsigned int>, void>::value, void>::type std::__shared_ptr<ns3::CommandLine::UserItem<unsigned int>, (__gnu_cxx::_Lock_policy)2>::_M_enable_shared_from_this_with<ns3::CommandLine::UserItem<unsigned int>, ns3::CommandLine::UserItem<unsigned int> >(ns3::CommandLine::UserItem<unsigned int>*)
+         USR             26             2    0.00     0.0           8.56  std::shared_ptr<ns3::CommandLine::Item>::shared_ptr<ns3::CommandLine::UserItem<unsigned int>, void>(std::shared_ptr<ns3::CommandLine::UserItem<unsigned int> > const&)
+         USR             26             2    0.00     0.0           0.32  std::__shared_ptr<ns3::CommandLine::Item, (__gnu_cxx::_Lock_policy)2>::__shared_ptr<ns3::CommandLine::UserItem<unsigned int>, void>(std::__shared_ptr<ns3::CommandLine::UserItem<unsigned int>, (__gnu_cxx::_Lock_policy)2> const&)
+         USR             26             2    0.00     0.0           6.72  std::shared_ptr<ns3::CommandLine::UserItem<unsigned int> >::~shared_ptr()
+         USR             26             2    0.00     0.0           0.28  std::__shared_ptr<ns3::CommandLine::UserItem<unsigned int>, (__gnu_cxx::_Lock_policy)2>::~__shared_ptr()
+         USR             26             2    0.00     0.0          47.32  void ns3::CommandLine::AddValue<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&)
+         USR             26             2    0.00     0.0          11.07  std::shared_ptr<ns3::CommandLine::UserItem<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > std::make_shared<ns3::CommandLine::UserItem<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >>()
+         USR             26             2    0.00     0.0           9.91  std::shared_ptr<ns3::CommandLine::UserItem<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > std::allocate_shared<ns3::CommandLine::UserItem<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<ns3::CommandLine::UserItem<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >>(std::allocator<ns3::CommandLine::UserItem<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > const&)
+         USR             26             2    0.00     0.0          12.26  std::shared_ptr<ns3::CommandLine::UserItem<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::shared_ptr<std::allocator<ns3::CommandLine::UserItem<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >>(std::_Sp_alloc_shared_tag<std::allocator<ns3::CommandLine::UserItem<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > >)
+         USR             26             2    0.00     0.0          32.49  std::__shared_ptr<ns3::CommandLine::UserItem<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, (__gnu_cxx::_Lock_policy)2>::__shared_ptr<std::allocator<ns3::CommandLine::UserItem<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >>(std::_Sp_alloc_shared_tag<std::allocator<ns3::CommandLine::UserItem<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > >)
+         USR             26             2    0.00     0.0          10.69  std::__shared_count<(__gnu_cxx::_Lock_policy)2>::__shared_count<ns3::CommandLine::UserItem<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<ns3::CommandLine::UserItem<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >>(ns3::CommandLine::UserItem<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >*&, std::_Sp_alloc_shared_tag<std::allocator<ns3::CommandLine::UserItem<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > >)
+         USR             26             2    0.00     0.0          26.62  std::_Sp_counted_ptr_inplace<ns3::CommandLine::UserItem<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<ns3::CommandLine::UserItem<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >, (__gnu_cxx::_Lock_policy)2>::_Sp_counted_ptr_inplace<>(std::allocator<ns3::CommandLine::UserItem<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >)
+         USR             26             2    0.00     0.0           8.71  std::_Sp_counted_ptr_inplace<ns3::CommandLine::UserItem<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<ns3::CommandLine::UserItem<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >, (__gnu_cxx::_Lock_policy)2>::_Impl::_Impl(std::allocator<ns3::CommandLine::UserItem<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >)
+         USR             26             2    0.00     0.0           0.25  std::_Sp_ebo_helper<0, std::allocator<ns3::CommandLine::UserItem<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >, true>::_Sp_ebo_helper(std::allocator<ns3::CommandLine::UserItem<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > const&)
+         USR             26             2    0.00     0.0           0.52  ns3::CommandLine::UserItem<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::UserItem()
+         USR             26             2    0.00     0.0           0.27  std::enable_if<!std::__shared_ptr<ns3::CommandLine::UserItem<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, (__gnu_cxx::_Lock_policy)2>::__has_esft_base<ns3::CommandLine::UserItem<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, void>::value, void>::type std::__shared_ptr<ns3::CommandLine::UserItem<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, (__gnu_cxx::_Lock_policy)2>::_M_enable_shared_from_this_with<ns3::CommandLine::UserItem<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, ns3::CommandLine::UserItem<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >(ns3::CommandLine::UserItem<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >*)
+         USR             26             2    0.00     0.0          10.80  std::shared_ptr<ns3::CommandLine::Item>::shared_ptr<ns3::CommandLine::UserItem<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, void>(std::shared_ptr<ns3::CommandLine::UserItem<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > const&)
+         USR             26             2    0.00     0.0           0.36  std::__shared_ptr<ns3::CommandLine::Item, (__gnu_cxx::_Lock_policy)2>::__shared_ptr<ns3::CommandLine::UserItem<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, void>(std::__shared_ptr<ns3::CommandLine::UserItem<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, (__gnu_cxx::_Lock_policy)2> const&)
+         USR             26             2    0.00     0.0           8.49  std::shared_ptr<ns3::CommandLine::UserItem<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::~shared_ptr()
+         USR             26             2    0.00     0.0           0.32  std::__shared_ptr<ns3::CommandLine::UserItem<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, (__gnu_cxx::_Lock_policy)2>::~__shared_ptr()
+         USR             26             2    0.00     0.0          37.53  void ns3::CommandLine::AddValue<bool>(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, bool&)
+         USR             26             2    0.00     0.0           7.48  std::shared_ptr<ns3::CommandLine::UserItem<bool> > std::make_shared<ns3::CommandLine::UserItem<bool>>()
+         USR             26             2    0.00     0.0           7.34  std::shared_ptr<ns3::CommandLine::UserItem<bool> > std::allocate_shared<ns3::CommandLine::UserItem<bool>, std::allocator<ns3::CommandLine::UserItem<bool> >>(std::allocator<ns3::CommandLine::UserItem<bool> > const&)
+         USR             26             2    0.00     0.0           7.80  std::shared_ptr<ns3::CommandLine::UserItem<bool> >::shared_ptr<std::allocator<ns3::CommandLine::UserItem<bool> >>(std::_Sp_alloc_shared_tag<std::allocator<ns3::CommandLine::UserItem<bool> > >)
+         USR             26             2    0.00     0.0          17.57  std::__shared_ptr<ns3::CommandLine::UserItem<bool>, (__gnu_cxx::_Lock_policy)2>::__shared_ptr<std::allocator<ns3::CommandLine::UserItem<bool> >>(std::_Sp_alloc_shared_tag<std::allocator<ns3::CommandLine::UserItem<bool> > >)
+         USR             26             2    0.00     0.0           7.52  std::__shared_count<(__gnu_cxx::_Lock_policy)2>::__shared_count<ns3::CommandLine::UserItem<bool>, std::allocator<ns3::CommandLine::UserItem<bool> >>(ns3::CommandLine::UserItem<bool>*&, std::_Sp_alloc_shared_tag<std::allocator<ns3::CommandLine::UserItem<bool> > >)
+         USR             26             2    0.00     0.0          16.88  std::_Sp_counted_ptr_inplace<ns3::CommandLine::UserItem<bool>, std::allocator<ns3::CommandLine::UserItem<bool> >, (__gnu_cxx::_Lock_policy)2>::_Sp_counted_ptr_inplace<>(std::allocator<ns3::CommandLine::UserItem<bool> >)
+         USR             26             2    0.00     0.0           8.84  std::_Sp_counted_ptr_inplace<ns3::CommandLine::UserItem<bool>, std::allocator<ns3::CommandLine::UserItem<bool> >, (__gnu_cxx::_Lock_policy)2>::_Impl::_Impl(std::allocator<ns3::CommandLine::UserItem<bool> >)
+         USR             26             2    0.00     0.0           0.27  std::_Sp_ebo_helper<0, std::allocator<ns3::CommandLine::UserItem<bool> >, true>::_Sp_ebo_helper(std::allocator<ns3::CommandLine::UserItem<bool> > const&)
+         USR             26             2    0.00     0.0           0.38  ns3::CommandLine::UserItem<bool>::UserItem()
+         USR             26             2    0.00     0.0           0.20  std::enable_if<!std::__shared_ptr<ns3::CommandLine::UserItem<bool>, (__gnu_cxx::_Lock_policy)2>::__has_esft_base<ns3::CommandLine::UserItem<bool>, void>::value, void>::type std::__shared_ptr<ns3::CommandLine::UserItem<bool>, (__gnu_cxx::_Lock_policy)2>::_M_enable_shared_from_this_with<ns3::CommandLine::UserItem<bool>, ns3::CommandLine::UserItem<bool> >(ns3::CommandLine::UserItem<bool>*)
+         USR             26             2    0.00     0.0           8.15  std::shared_ptr<ns3::CommandLine::Item>::shared_ptr<ns3::CommandLine::UserItem<bool>, void>(std::shared_ptr<ns3::CommandLine::UserItem<bool> > const&)
+         USR             26             2    0.00     0.0           0.32  std::__shared_ptr<ns3::CommandLine::Item, (__gnu_cxx::_Lock_policy)2>::__shared_ptr<ns3::CommandLine::UserItem<bool>, void>(std::__shared_ptr<ns3::CommandLine::UserItem<bool>, (__gnu_cxx::_Lock_policy)2> const&)
+         USR             26             2    0.00     0.0           8.14  std::shared_ptr<ns3::CommandLine::UserItem<bool> >::~shared_ptr()
+         USR             26             2    0.00     0.0           0.32  std::__shared_ptr<ns3::CommandLine::UserItem<bool>, (__gnu_cxx::_Lock_policy)2>::~__shared_ptr()
+         USR             26             2    0.00     0.0           8.07  ns3::CommandLine::UserItem<unsigned int>::Parse(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) const
+         USR             26             2    0.00     0.0           6.21  bool ns3::CommandLineHelper::UserItemParse<unsigned int>(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, unsigned int&)
+         USR             26             2    0.00     0.0          48.86  ns3::PointToPointHelper::PointToPointHelper(ns3::PointToPointHelper const&)
+         USR             26             2    0.00     0.0           0.66  ns3::PcapHelperForDevice::PcapHelperForDevice(ns3::PcapHelperForDevice const&)
+         USR             26             2    0.00     0.0           0.65  ns3::AsciiTraceHelperForDevice::AsciiTraceHelperForDevice(ns3::AsciiTraceHelperForDevice const&)
+         USR             26             2    0.50     0.1      249561.77  PointToPointFatTreeHelper::PointToPointFatTreeHelper(unsigned int, ns3::PointToPointHelper)
+         USR             26             2    1.04     0.2      519460.49  PointToPointFatTreeHelper::InstallStack(ns3::InternetStackHelper)
+         USR             26             2    0.52     0.1      258334.46  PointToPointFatTreeHelper::AssignIpv4Addresses(ns3::Ipv4Address, ns3::Ipv4Mask)
+         USR             26             2    0.00     0.0           3.82  PointToPointFatTreeHelper::GetNumServers() const
+         USR             26             2    0.00     0.0           0.72  PointToPointFatTreeHelper::GetMServers() const
+         USR             26             2    0.00     0.0           1.40  ns3::UdpEchoServerHelper::~UdpEchoServerHelper()
+         USR             26             2    0.03     0.0       16773.76  PointToPointFatTreeHelper::BoundingBox(double, double, double, double)
+         USR             26             2    0.00     0.0          52.10  PointToPointFatTreeHelper::~PointToPointFatTreeHelper()
+         USR             26             2    0.00     0.0          14.38  std::_Sp_counted_ptr_inplace<ns3::CommandLine::UserItem<unsigned int>, std::allocator<ns3::CommandLine::UserItem<unsigned int> >, (__gnu_cxx::_Lock_policy)2>::_M_dispose()
+         USR             26             2    0.00     0.0           0.53  ns3::CommandLine::UserItem<unsigned int>::~UserItem()
+         USR             26             2    0.00     0.0           7.00  std::_Sp_counted_ptr_inplace<ns3::CommandLine::UserItem<unsigned int>, std::allocator<ns3::CommandLine::UserItem<unsigned int> >, (__gnu_cxx::_Lock_policy)2>::_M_destroy()
+         USR             26             2    0.00     0.0         381.72  std::_Sp_counted_ptr_inplace<ns3::CommandLine::UserItem<unsigned int>, std::allocator<ns3::CommandLine::UserItem<unsigned int> >, (__gnu_cxx::_Lock_policy)2>::~_Sp_counted_ptr_inplace()
+         USR             26             2    0.00     0.0           6.80  std::_Sp_counted_ptr_inplace<ns3::CommandLine::UserItem<unsigned int>, std::allocator<ns3::CommandLine::UserItem<unsigned int> >, (__gnu_cxx::_Lock_policy)2>::_Impl::~_Impl()
+         USR             26             2    0.00     0.0           0.33  std::_Sp_ebo_helper<0, std::allocator<ns3::CommandLine::UserItem<unsigned int> >, true>::~_Sp_ebo_helper()
+         USR             26             2    0.00     0.0          18.55  std::_Sp_counted_ptr_inplace<ns3::CommandLine::UserItem<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<ns3::CommandLine::UserItem<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >, (__gnu_cxx::_Lock_policy)2>::_M_dispose()
+         USR             26             2    0.00     0.0           1.05  ns3::CommandLine::UserItem<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::~UserItem()
+         USR             26             2    0.00     0.0          11.64  std::_Sp_counted_ptr_inplace<ns3::CommandLine::UserItem<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<ns3::CommandLine::UserItem<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >, (__gnu_cxx::_Lock_policy)2>::_M_destroy()
+         USR             26             2    0.00     0.0          10.25  std::_Sp_counted_ptr_inplace<ns3::CommandLine::UserItem<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<ns3::CommandLine::UserItem<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >, (__gnu_cxx::_Lock_policy)2>::~_Sp_counted_ptr_inplace()
+         USR             26             2    0.00     0.0           7.19  std::_Sp_counted_ptr_inplace<ns3::CommandLine::UserItem<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<ns3::CommandLine::UserItem<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >, (__gnu_cxx::_Lock_policy)2>::_Impl::~_Impl()
+         USR             26             2    0.00     0.0           0.33  std::_Sp_ebo_helper<0, std::allocator<ns3::CommandLine::UserItem<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >, true>::~_Sp_ebo_helper()
+         USR             26             2    0.00     0.0         170.59  std::_Sp_counted_ptr_inplace<ns3::CommandLine::UserItem<bool>, std::allocator<ns3::CommandLine::UserItem<bool> >, (__gnu_cxx::_Lock_policy)2>::_M_dispose()
+         USR             26             2    0.00     0.0           0.59  ns3::CommandLine::UserItem<bool>::~UserItem()
+         USR             26             2    0.00     0.0           6.21  std::_Sp_counted_ptr_inplace<ns3::CommandLine::UserItem<bool>, std::allocator<ns3::CommandLine::UserItem<bool> >, (__gnu_cxx::_Lock_policy)2>::_M_destroy()
+         USR             26             2    0.00     0.0           6.88  std::_Sp_counted_ptr_inplace<ns3::CommandLine::UserItem<bool>, std::allocator<ns3::CommandLine::UserItem<bool> >, (__gnu_cxx::_Lock_policy)2>::~_Sp_counted_ptr_inplace()
+         USR             26             2    0.00     0.0           9.02  std::_Sp_counted_ptr_inplace<ns3::CommandLine::UserItem<bool>, std::allocator<ns3::CommandLine::UserItem<bool> >, (__gnu_cxx::_Lock_policy)2>::_Impl::~_Impl()
+         USR             26             2    0.00     0.0           0.36  std::_Sp_ebo_helper<0, std::allocator<ns3::CommandLine::UserItem<bool> >, true>::~_Sp_ebo_helper()
