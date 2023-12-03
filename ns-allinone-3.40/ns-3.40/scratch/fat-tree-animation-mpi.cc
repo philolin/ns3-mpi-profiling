@@ -770,7 +770,7 @@ main(int argc, char* argv[])
     for (uint32_t potentialSystemId = 0; potentialSystemId < systemCount; potentialSystemId++)
     {
         // Each server saggregateEnds a packet to all other servers
-        if (potentialSystemId == systemId)
+        if (potentialSystemId == systemId && systemId != 0)
         {
             UdpEchoServerHelper echoServer(9);
             ApplicationContainer serverApps;
@@ -790,6 +790,7 @@ main(int argc, char* argv[])
     // uint32_t packetNumber = 0;
     for (uint32_t saggregateEnder = 0; saggregateEnder < numServers; saggregateEnder++)
     {
+        if (systemId == 0) continue;
         uint32_t lower = systemId * serversMpiStride;
         uint32_t upper = lower + serversMpiStride;
         if (saggregateEnder < lower || saggregateEnder >= upper)
